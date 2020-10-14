@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:icon="@drawable/ic_baseline_home_24"
+            android:id="@+id/mhome"
+            android:title="Home" />
+        <item
+            android:icon="@drawable/ic_baseline_playlist_add_check_24"
+            android:id="@+id/mAttd"
+            android:title="My Attendance" />
+        <item
+            android:icon="@drawable/ic_baseline_table_chart_24"
+            android:id="@+id/mTable"
+            android:title="Timetable N Tracker" />
+        <item
+            android:icon="@drawable/ic_baseline_person_24"
+            android:id="@+id/mProf"
+            android:title="My Profile" />
+        <item
+            android:icon="@drawable/ic_baseline_question_answer_24"
+            android:id="@+id/mSupp"
+            android:title="Support" />
+        <item
+            android:id="@+id/mScan"
+            android:icon="@drawable/ic_scan"
+            android:title="Face Scan" />
+        <item
+            android:id="@+id/mLogOut"
+            android:icon="@drawable/ic_log_out"
+            android:title="Logout" />
+    </group>
+</menu>

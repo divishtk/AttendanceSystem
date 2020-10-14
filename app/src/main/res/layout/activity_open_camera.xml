@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="60sp"
+    android:orientation="vertical"
+    tools:context=".openCamera">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="250sp"
+        android:padding="20sp">
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:background="@drawable/border_line"
+                android:fontFamily="sans-serif-light"
+                android:text="Scan Your Attendance"
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="28sp" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="right"
+                android:text="SAP ID: "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/studSap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text="70611019008"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="right"
+                android:text="Name: "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/studName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text="Itachi Uchiha"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="right"
+                android:text="Address: "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/studAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text="Stays at Konoha Village"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="right"
+                android:text="Course: "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/course"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text="MCA"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/openCamera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="120sp"
+            android:background="@drawable/shadow_button"
+            android:gravity="center"
+            android:padding="20px"
+            android:text="Photo for Verification"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

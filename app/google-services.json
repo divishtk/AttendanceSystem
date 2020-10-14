@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "661798000622",
+    "firebase_url": "https://virtualattendance-c2d55.firebaseio.com",
+    "project_id": "virtualattendance-c2d55",
+    "storage_bucket": "virtualattendance-c2d55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661798000622:android:cc06a0786d5737171e20ff",
+        "android_client_info": {
+          "package_name": "com.example.attendancesystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661798000622-8dkasjkj79vs7jb6ebj9srvon9ipgc7q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUoKNArs2FpmFCWDmsztMMzJTPgGz8l18"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661798000622-8dkasjkj79vs7jb6ebj9srvon9ipgc7q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

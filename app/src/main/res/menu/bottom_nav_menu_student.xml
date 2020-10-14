@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_scan"
+        android:icon="@drawable/ic_face"
+        android:title="Face_Scan"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_attendance"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="Attendance"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_profilePage"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_logout"
+        android:icon="@drawable/ic_log_out"
+        android:title="Logout"
+        app:showAsAction="ifRoom"/>
+</menu>

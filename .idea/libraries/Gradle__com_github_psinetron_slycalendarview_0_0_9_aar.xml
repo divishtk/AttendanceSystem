@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.psinetron:slycalendarview:0.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d21b3bda855bab7f3ce065058cef592c/jetified-slycalendarview-0.0.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d21b3bda855bab7f3ce065058cef592c/jetified-slycalendarview-0.0.9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.psinetron/slycalendarview/0.0.9/1188baebf3174adea5b6100136d78d70213fb62b/slycalendarview-0.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

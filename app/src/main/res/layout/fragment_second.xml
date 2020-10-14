@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBG">
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_margin="25sp">
+        <TableRow>
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"
+                android:text="M A T"
+                android:textStyle="bold"
+                android:textColor="@color/colorFG2"
+                android:layout_marginVertical="10sp"
+                android:textSize="36sp"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Full Name"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editName"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:padding="7sp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:hint="Enter Full Name..."
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:width="100dp"
+                android:text="SAP ID"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editSID"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:padding="7sp"
+                android:width="100dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter SAP ID.."
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Email Address"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editEA"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:padding="7sp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter current email id.."
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Password"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editCF"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="7sp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Enter Password.."
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Confirm Password"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editCF2"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="7sp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Re-enter Password.."
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DOB"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/editDOB"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="7sp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter birthdate"
+                android:background="@drawable/border_line"
+                android:textColor="@color/colorFont"
+                android:textColorHint="@color/colorFontLight"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Gender"
+                android:paddingVertical="5sp"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Male"
+                    android:buttonTint="@color/colorFG"
+                    android:textColor="@color/colorFont"
+                    android:textColorHint="@color/colorFG"
+                    android:textSize="14sp" />
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:buttonTint="@color/colorFG"
+                    android:layout_weight="1"
+                    android:text="Female"
+                    android:textColor="@color/colorFont"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Account Type"
+                android:paddingVertical="5sp"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+            <RadioGroup
+                android:id="@+id/type"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="2"
+                >
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student"
+                    android:buttonTint="@color/colorFG"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorFont"
+                    android:textSize="14sp" />
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorFG"
+                    android:textSize="14sp"
+                    android:layout_weight="1"
+                    android:text="Teacher"
+                    android:textColor="@color/colorFont"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/button1"
+                android:layout_marginTop="20dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:background="@drawable/shadow_button"
+                android:layout_marginHorizontal="10sp"
+                android:textColor="@color/colorFont1"
+                android:textStyle="bold"
+                android:text="Submit"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_marginTop="20dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.95"
+                android:layout_marginHorizontal="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/shadow_button"
+                android:textColor="@color/colorFont1"
+                android:text="Reset"/>
+        </TableRow>
+</TableLayout>
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#6200EE</color>-->
+<!--    <color name="colorFG">#44BBA4</color>-->
+    <!-- dark colors
+    <color name="colorPrimary">@color/colorTitleBar</color>
+    <color name="colorFG2">#615e6e</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorBG">#232228</color>
+    <color name="colorTitleBar">@color/colorFG</color>
+    <color name="colorFG">#7cc2fe</color>
+    <color name="colorInputs">#19181d</color>
+    <color name="colorFont">#dad9de</color>
+-->
+    <color name="colorPrimary">@color/colorTitleBar</color>
+    <color name="colorFG2">#f73346</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorTitleBar">@color/colorFG</color>
+    <color name="colorFG">#f73346</color>
+    <color name="colorBG">#FFFFFF</color>
+    <color name="colorInputs">#FFFFFF</color>
+    <color name="colorFont">#000000</color>
+    <color name="colorFont1">#FFFFFF</color>
+    <color name="colorFontLight">#C7C7CD</color>
+
+</resources>

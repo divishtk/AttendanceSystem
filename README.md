@@ -1,6 +1,4 @@
-# virtualAttendanceSystem
-An android app using openCV2
 
-steven did it
-divisht did it finally.
-"# MAT-Android-Project" 
+# AttendanceSystem
+An android app where user can give the attendace by recognizing their face with the help of flask server running in backend.
+

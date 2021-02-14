@@ -76,9 +76,18 @@ public class scannerCam extends AppCompatActivity {
                             startActivity(i);
                             break;
                         case R.id.navigation_logout:
-                            Toast.makeText(getApplicationContext(), "My Logout Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), openCamera.class);
-                            startActivity(i);
+                            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                            Toast.makeText(getApplicationContext(), "Logged In UID" + fAuth.getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+                            if (!"".equals(fAuth.getCurrentUser().getUid())) {
+                                fAuth.signOut();
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            }
                             break;
                     }
                     return true;
@@ -106,7 +115,6 @@ public class scannerCam extends AppCompatActivity {
         final String pwd = prefs.getString("password", "");
         Log.d("Auth", "Email" + email + "Password" + pwd);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        DocumentSnapshot querySnapshot;
 
         if (user != null) {
             // User is signed in
@@ -148,9 +156,7 @@ public class scannerCam extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (user != null) {
-
                     FileChooser();
-
                 } else {
                     Toast.makeText(getApplicationContext(), "User not logged in !!", Toast.LENGTH_SHORT).show();
                 }
@@ -218,12 +224,11 @@ public class scannerCam extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), "Image URL Added", Toast.LENGTH_SHORT).show();
                                             }
                                         });
-                                Toast.makeText(getApplicationContext(), "Successfully Sent for verification", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Successfully Uploaded as FaceID", Toast.LENGTH_SHORT).show();
                                 Log.i("Downloaded URL", profileImageUrl);
                             }
                         });
                         Log.d("Image", "Image Successfully uploaded" + downloadUrl.getEncodedPath().toString());
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

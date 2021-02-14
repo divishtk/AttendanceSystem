@@ -174,8 +174,8 @@ public class firstFragment extends Fragment {
             public void onClick(View view) {
                 final EditText resetMail = new EditText(view.getContext());
                 AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(view.getContext());// for dialog box
-                passwordResetDialog.setTitle("Password bhul gaya kyaa?");
-                passwordResetDialog.setMessage("Idhar email id daal aur reset maar");
+                passwordResetDialog.setTitle("Did you Forget Your Password?");
+                passwordResetDialog.setMessage("Enter email id to proceed");
                 passwordResetDialog.setView(resetMail);
 
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -185,7 +185,7 @@ public class firstFragment extends Fragment {
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(getActivity(), "Reset Link Sent To Your Email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Reset Link is been Sent To Your Email", Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

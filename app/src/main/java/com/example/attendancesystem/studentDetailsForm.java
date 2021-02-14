@@ -58,9 +58,18 @@ public class studentDetailsForm extends AppCompatActivity {
                             startActivity(i);
                             break;
                         case R.id.navigation_logout:
-                            Toast.makeText(getApplicationContext(), "My Logout Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), profilePage.class);
-                            startActivity(i);
+                            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                            Toast.makeText(getApplicationContext(), "Logged In UID" + fAuth.getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+                            if (!"".equals(fAuth.getCurrentUser().getUid())) {
+                                fAuth.signOut();
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            }
                             break;
                     }
                     return true;

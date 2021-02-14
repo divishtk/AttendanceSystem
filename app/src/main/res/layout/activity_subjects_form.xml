@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="List of Subjects"
+            android:text="Previous Records"
             android:textAlignment="center"
             android:textColor="@color/colorFG2"
             android:textSize="28sp"
@@ -55,7 +55,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginVertical="10sp"
                     android:layout_weight="1"
-                    android:text="Form"
+                    android:text="Student's Details"
                     android:textAlignment="center"
                     android:textColor="@color/colorFG2"
                     android:textSize="28sp"
@@ -68,7 +68,7 @@
                     android:id="@+id/textView2"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="SAP ID"
+                    android:text="For SAP ID"
                     android:textColor="@color/colorFont"
                     android:textSize="14sp" />
 
@@ -170,7 +170,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="3"
                     android:background="@drawable/shadow_button"
-                    android:text="Assign Subject"
+                    android:text="Assign"
                     android:textColor="@color/colorFont1"
                     android:textStyle="bold"
                     />

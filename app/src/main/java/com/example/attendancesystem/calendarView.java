@@ -20,6 +20,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -59,27 +60,30 @@ public class calendarView extends AppCompatActivity implements SlyCalendarDialog
                 firstDate.set(Calendar.HOUR_OF_DAY, hours);
                 firstDate.set(Calendar.MINUTE, minutes);
 
-                String getDate = new SimpleDateFormat(getString(R.string.timeFormat), Locale.getDefault()).format(firstDate.getTime());
-                fetchCalendarData(getDate);
+                String getDateBySystem = new SimpleDateFormat(
+                        "dd-MM-yyyy").format(firstDate.getTime());
+
+                //to fetch the schedules
+                fetchCalendarData(getDateBySystem);
+                String timeFormat2 = new SimpleDateFormat(
+                        "hh:mm").format(firstDate.getTime());
                 Toast.makeText(
                         this,
-                        getDate,
+                        getDateBySystem + " / " + timeFormat2,
                         Toast.LENGTH_LONG
                 ).show();
                 TextView txt = (TextView) findViewById(R.id.calendarDate);
-                txt.setText(getDate.substring(0, 3));
-
-
+                txt.setText(getDateBySystem + " / " + timeFormat2);
             } else {
                 firstDate.set(Calendar.HOUR_OF_DAY, hours);
                 firstDate.set(Calendar.MINUTE, minutes);
                 SimpleDateFormat dateFormat = new SimpleDateFormat(
                         "dd-MM-yyyy");
-                SimpleDateFormat dateFormat2 = new SimpleDateFormat(
+                SimpleDateFormat timeFormat2 = new SimpleDateFormat(
                         "hh:mm");
 
                 Log.i("Doc", dateFormat.format(firstDate.getTime()));
-                Log.i("Doc Time", dateFormat2.format(firstDate.getTime()));
+                Log.i("Doc Time", timeFormat2.format(firstDate.getTime()));
                 Toast.makeText(
                         this,
                         getString(
@@ -103,23 +107,31 @@ public class calendarView extends AppCompatActivity implements SlyCalendarDialog
 
 
     private void fetchCalendarData(String getDate) {
-        getDate = "21-10-2020";
+        Log.i("Date",getDate);
+//        getDate = "21-10-2020";
         FirebaseFirestore.getInstance().collection("Schedules").whereEqualTo("Date", getDate)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    ArrayList<LectureClass> al = new ArrayList<>();
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.i("Doc", document.get("Course").toString() + " course with teacher assigned is " + document.get("Teacher_Assigned").toString());
+                        Log.i("Doc", document.get("Course").toString() + " " + document.get("Subject").toString() + " course with " +
+                                "teacher assigned is " + document.get("Teacher_Assigned").toString());
 
-                        LectureClass[] myListData = new LectureClass[]{
-                                new LectureClass("MCA", "12:00", "14:00"),
-                                new LectureClass("MCA", "14:00", "15:00"),
-                                new LectureClass("MTech", "12:00", "14:00"),
-                                new LectureClass("MBA", "12:00", "16:00")
-                        };
-                        filterLectureList(myListData);
+//                        LectureClass[] myListData = new LectureClass[]{
+//                                new LectureClass("MCA", "12:00", "14:00"),
+//                                new LectureClass("MCA", "14:00", "15:00"),
+//                                new LectureClass("MTech", "12:00", "14:00"),
+//                                new LectureClass("MBA", "12:00", "16:00")
+//                        };
+
+                        al.add(new LectureClass(document.get("Subject").toString()+" ("+document.get("Course").toString()+")", document.get("Start_Time").toString(), document.get("End_Time").toString(), document.getId()));
                     }
+
+                    LectureClass[] myListData = new LectureClass[al.size()];
+                    myListData =  al.toArray(myListData);
+                    filterLectureList(myListData);
                 }
             }
 

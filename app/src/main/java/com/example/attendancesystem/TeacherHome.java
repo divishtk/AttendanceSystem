@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class TeacherHome extends AppCompatActivity {
 
@@ -38,7 +43,7 @@ public class TeacherHome extends AppCompatActivity {
                             break;
                         case R.id.navigation_profilePage:
                             Toast.makeText(getApplicationContext(), "My Profile Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), profilePage.class);
+                            i = new Intent(getApplicationContext(), teacherProfilePage.class);
                             startActivity(i);
                             break;
                         case R.id.navigation_logout:
@@ -68,6 +73,23 @@ public class TeacherHome extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottom_navigation_teacher);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            FirebaseFirestore.getInstance().collection("Users").document(user.getUid()).get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            TextView teach_sapid = (TextView) findViewById(R.id.teach_sapid);
+                            teach_sapid.setText(documentSnapshot.getString("Sap_ID"));
+                            TextView teach_name = (TextView) findViewById(R.id.teach_name);
+                            teach_name.setText(documentSnapshot.getString("Full_name"));
+                            TextView teach_dept = (TextView) findViewById(R.id.teach_dept);
+                            teach_dept.setText("Technical");
+                            //documentSnapshot.getString("Technical");
+                        }
+                    });
+        }
+
         findViewById(R.id.cardView1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +107,7 @@ public class TeacherHome extends AppCompatActivity {
         findViewById(R.id.cardView3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherHome.this, AttendanceTable.class);
+                Intent intent = new Intent(TeacherHome.this, StudentVerifyTable.class);
                 startActivity(intent);
             }
         });
@@ -99,7 +121,7 @@ public class TeacherHome extends AppCompatActivity {
         findViewById(R.id.cardView5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TeacherHome.this, profilePage.class);
+                Intent intent = new Intent(TeacherHome.this, supportPage.class);
                 startActivity(intent);
             }
         });

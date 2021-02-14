@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,22 +36,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class openCamera extends AppCompatActivity {
 
     Uri imguri;
     ImageView img;
 
-    TextView name, sapId, add, course;
+    TextView name, sapId, add, course, lectId, subj;
     FirebaseAuth fAuth;
     FirebaseUser user;
     DocumentReference docRef = null;
@@ -66,10 +73,20 @@ public class openCamera extends AppCompatActivity {
         add = (TextView) findViewById(R.id.studAdd);
         sapId = (TextView) findViewById(R.id.studSap);
         course = (TextView) findViewById(R.id.course);
+        lectId = (TextView) findViewById(R.id.lectId);
+        subj = (TextView) findViewById(R.id.subject);
         Button btn = (Button) findViewById(R.id.openCamera);
 
+        String lect_Id = getIntent().getStringExtra("lectId");
+        String subject = getIntent().getStringExtra("subject");
+        Toast.makeText(getApplicationContext(), "Lecture Id is "+lect_Id ,Toast.LENGTH_SHORT).show();
+        lectId.setText(lect_Id);
+        subj.setText(subject);
+
+
+
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Toast.makeText(getApplicationContext(), prefs.getString("apiAddress", ""),Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), prefs.getString("apiAddress", ""),Toast.LENGTH_SHORT).show();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +94,7 @@ public class openCamera extends AppCompatActivity {
                 i.setType("image/jpeg");
                 i.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(i, 1777);
+                // TODO: Convert to camera images ;)
             }
         });
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -112,7 +130,12 @@ public class openCamera extends AppCompatActivity {
             // No user is signed in
             Toast.makeText(getApplicationContext(), "User not logged in !!", Toast.LENGTH_SHORT).show();
         }
-
+        if(!"".equalsIgnoreCase(lect_Id)){
+            //code for add attendance
+            FirebaseFirestore.getInstance().collection("Schedules").document(lect_Id)
+                    .update("sap_attend", FieldValue.arrayUnion(sapId.getText()));
+            Log.i("FireStore","Added in doc "+ lect_Id);
+        }
     }
 
     @Override
@@ -123,18 +146,9 @@ public class openCamera extends AppCompatActivity {
                 Uri filePath = data.getData();
                 try {
                     imguri = data.getData();
+                    Toast.makeText(getApplicationContext(),"uploading...",Toast.LENGTH_LONG).show();
                     sendToCompare();
 
-
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//                    Bitmap lastBitmap = null;
-//                    lastBitmap = bitmap;
-//                    //encoding image to string
-//                    String image = getStringImage(lastBitmap);
-//                    Log.d("image", image);
-                    //passing the image to volley
-//                    SimpleReq();
-//                    SendImage2(lastBitmap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -177,13 +191,17 @@ public class openCamera extends AppCompatActivity {
                                                             String img2 = documentSnapshot.get("temp-urlName").toString();
                                                             Log.i("Image 1 Url", img1);
                                                             Log.i("Image 2 Url", img2);
+                                                            String[] resp = SimpleReq(img1,img2);
+                                                            Log.d("Resp",resp.toString());
                                                         }
-                                                    });
-
+                                                }).addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Log.i("Response","Failed"+e);
+                                                    }
+                                                });
 //                                              String[] resp = SendImage2(img1,img2);
 //                                              Code for add attendance for a schedule
-                                                Toast.makeText(getApplicationContext(), "Student Verified ", Toast.LENGTH_SHORT).show();
-
                                             }
                                         });
 
@@ -208,26 +226,77 @@ public class openCamera extends AppCompatActivity {
 
     }
 
-    private void SimpleReq() {
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.43.48:5000/name/Steven";
 
+    private String[] SimpleReq(final String img1, final String img2) {
+        // Instantiate the RequestQueue.
+        final String[] resp = new String[3];
+        RequestQueue queue = Volley.newRequestQueue(this);
+//        String REGISTER_URL = "http://192.168.29.48:5000/api/testParams";
+        String REGISTER_URL = "http://192.168.29.48:5000/api/faceRecog2";
+        if(!prefs.getString("apiAddress", "").equals("")){
+            REGISTER_URL = prefs.getString("apiAddress", "") + "/api/faceRecog2";
+            Log.i("REGISTER_URL","url set "+ REGISTER_URL);
+        }
         // Request a string response from the provided URL.
-        StringRequest stringRequest1 = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Simple1", "Response is: " + response);
-                        Toast.makeText(getApplicationContext(), "Success" + response, Toast.LENGTH_LONG).show();
+                        Log.i("response ",response);
+                        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            Log.i("resp 1",jsonObject.getString("Matched"));
+                            Log.i("resp 2",jsonObject.getString("percentage"));
+                            resp[0] = response;
+                            resp[1] = jsonObject.getString("percentage");
+//
+                            if(jsonObject.getString("Matched").equals("True")){
+
+                                String lect_Id = getIntent().getStringExtra("lectId");
+                                if(!"".equalsIgnoreCase(lect_Id)){
+                                    //code for add attendance
+                                    FirebaseFirestore.getInstance().collection("Schedules").document(lect_Id)
+                                            .update("sap_attend", FieldValue.arrayUnion(sapId.getText()));
+                                    Log.i("FireStore","Added in doc "+ lect_Id);
+                                }
+                                Toast.makeText(getApplicationContext(), "Attendance Given!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Face ID didn't Match. Failed to give Attendance!", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }, new Response.ErrorListener() {
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                }){
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("GET Request", "Error is: " + error);
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("img_url1",img1);
+                params.put("img_url2",img2);
+//                params.put("img_url1","https://firebasestorage.googleapis.com/v0/b/virtualattendance-c2d55.appspot.com/o/Images%2Fselena.PNG?alt=media&token=c7ec705c-16d4-4bfa-a0a0-966e0341e5b5");
+//                params.put("img_url1","https://firebasestorage.googleapis.com/v0/b/virtualattendance-c2d55.appspot.com/o/Images%2Fselena_test.png?alt=media&token=78445ea3-51a3-4127-ae22-6f082b4a763e");
+                return params;
             }
-        });
-        queue.add(stringRequest1);
+
+        };
+//        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+//                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2,
+//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                (int) TimeUnit.SECONDS.toMillis(20),
+                1,
+                1f));
+        queue.add(stringRequest);
+        return resp;
     }
 
     private String[] SendImage2(final String downloadImageUrl1, final String downloadImageUrl2) {

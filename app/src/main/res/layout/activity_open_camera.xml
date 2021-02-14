@@ -9,11 +9,17 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="250sp"
+        android:layout_height="300sp"
         android:padding="20sp">
 
         <TableRow android:gravity="center">
 
+            <TextView
+                android:id="@+id/lectId"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text=""
+                android:visibility="gone"/>
             <TextView
                 android:id="@+id/Title"
                 android:layout_width="wrap_content"
@@ -22,7 +28,7 @@
                 android:layout_marginBottom="5sp"
                 android:background="@drawable/border_line"
                 android:fontFamily="sans-serif-light"
-                android:text="Scan Your Attendance"
+                android:text="Student "
                 android:textColor="@color/colorFont"
                 android:textFontWeight="900"
                 android:textSize="28sp" />
@@ -76,7 +82,8 @@
                 android:textSize="14sp" />
         </TableRow>
 
-        <TableRow android:layout_width="match_parent">
+        <TableRow android:layout_width="match_parent"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="0dp"
@@ -100,6 +107,21 @@
                 android:textSize="14sp" />
         </TableRow>
 
+
+        <TableRow android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
+                android:background="@drawable/border_line"
+                android:fontFamily="sans-serif-light"
+                android:text="For Lecture "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="24sp" />
+        </TableRow>
         <TableRow android:layout_width="match_parent">
 
             <TextView
@@ -123,13 +145,37 @@
                 android:textColor="@color/colorFont"
                 android:textSize="14sp" />
         </TableRow>
+        <TableRow android:layout_width="match_parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5sp"
+                android:layout_weight="5"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="right"
+                android:text="Subject: "
+                android:textColor="@color/colorFont"
+                android:textFontWeight="900"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text="OOSE"
+                android:textColor="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
 
     </TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/openCamera"
@@ -139,8 +185,24 @@
             android:background="@drawable/shadow_button"
             android:gravity="center"
             android:padding="20px"
-            android:text="Photo for Verification"
+            android:text="Upload"
             android:textColor="#FFF"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Send Your Photo for Verification"
+            android:textColor="@color/colorFont"
+            android:layout_marginVertical="10sp"
+            />
+        <TextView
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Note: Make Sure it is similar to profile image uploaded."
+            android:layout_marginVertical="10sp"
+            />
     </LinearLayout>
 </LinearLayout>

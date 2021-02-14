@@ -10,9 +10,9 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="250sp"
+        android:layout_height="270sp"
         android:layout_gravity="center_vertical"
-        android:padding="20sp">
+        android:padding="10sp">
 
         <TableRow android:gravity="center">
             <TextView
@@ -73,7 +73,8 @@
                 android:textSize="14sp" />
         </TableRow>
 
-        <TableRow android:layout_width="match_parent">
+        <TableRow android:layout_width="match_parent"
+            android:visibility="gone">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -127,7 +128,7 @@
                 android:layout_weight="5"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="right"
-                android:text="Click here to Scan ->"
+                android:text="Click here to Add ->"
                 android:textColor="@color/colorFont"
                 android:textSize="18sp" />
             <Button
@@ -138,16 +139,26 @@
                 android:background="@drawable/shadow_button"
                 android:hint="Click to open Camera"
                 android:padding="5sp"
-                android:text="Open Cam"
+                android:text="Select Image"
                 android:textColor="@color/colorFont1"
                 android:textColorHint="@color/colorFont"
+                android:textSize="14sp" />
+        </TableRow>
+        <TableRow android:layout_width="match_parent"
+            android:gravity="center">
+            <TextView
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="( Note: Make Sure the face is properly align as it will be used for your attendance face scans )"
+                android:textColor="@color/colorFont"
                 android:textSize="14sp" />
         </TableRow>
     </TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="180sp"
         android:orientation="vertical">
 
         <ImageView
@@ -172,8 +183,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shadow_button"
-            android:padding="12sp"
-            android:text="Send to Verify"
+            android:padding="6sp"
+            android:text="Upload Face ID"
             android:textColor="@color/colorFont1"/>
     </LinearLayout>
 

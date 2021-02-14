@@ -44,14 +44,17 @@ public class LectureItemAdapter extends RecyclerView.Adapter<LectureItemAdapter.
             }
         });
         final Intent i = new Intent(lcon, openCamera.class);
+        final String LectId = listdata[position].getLectId();
+        final String subject = listdata[position].getCourse().split(" ")[0].trim();
         holder.linearLayout.findViewById(R.id.schedule_giveAttend).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                i.putExtra("lectId", LectId);
+                i.putExtra("subject", subject);
                 lcon.startActivity(i);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {

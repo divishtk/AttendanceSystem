@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class supportPage extends AppCompatActivity {
 
@@ -21,34 +22,42 @@ public class supportPage extends AppCompatActivity {
                     switch (item.getItemId()) {
                         case R.id.navigation_home:
                             Toast.makeText(getApplicationContext(), "Home Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), HomePage.class);
+                            i = new Intent(getApplicationContext(), TeacherHome.class);
                             startActivity(i);
                             break;
-                        case R.id.navigation_scan:
+                        case R.id.navigation_student_details:
                             Toast.makeText(getApplicationContext(), "Attandance Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), scannerCam.class);
+                            i = new Intent(getApplicationContext(), studentDetailsForm.class);
+                            startActivity(i);
+                            break;
+                        case R.id.navigation_subject_details:
+                            Toast.makeText(getApplicationContext(), "My Attendance Button is Clicked", Toast.LENGTH_SHORT).show();
+                            i = new Intent(getApplicationContext(), SubjectsForm.class);
                             startActivity(i);
                             break;
                         case R.id.navigation_profilePage:
                             Toast.makeText(getApplicationContext(), "My Profile Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), profilePage.class);
-                            startActivity(i);
-                            break;
-                        case R.id.navigation_attendance:
-                            Toast.makeText(getApplicationContext(), "My Attendance Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), calendarView.class);
+                            i = new Intent(getApplicationContext(), teacherProfilePage.class);
                             startActivity(i);
                             break;
                         case R.id.navigation_logout:
-                            Toast.makeText(getApplicationContext(), "My Logout Button is Clicked", Toast.LENGTH_SHORT).show();
-                            i = new Intent(getApplicationContext(), profilePage.class);
-                            startActivity(i);
+                            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                            Toast.makeText(getApplicationContext(), "Logged In UID"+fAuth.getCurrentUser().getUid(), Toast.LENGTH_SHORT).show();
+                            if(!"".equals(fAuth.getCurrentUser().getUid())){
+                                fAuth.signOut();
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            }else {
+                                Toast.makeText(getApplicationContext(), "Logout Button is Clicked", Toast.LENGTH_SHORT).show();
+                                i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            }
                             break;
                     }
                     return true;
                 }
             };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +65,7 @@ public class supportPage extends AppCompatActivity {
         setContentView(R.layout.activity_support_page);
 
 
-        bottomNavigation = findViewById(R.id.bottom_navigation_student);
+        bottomNavigation = findViewById(R.id.bottom_navigation_teacher);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 }

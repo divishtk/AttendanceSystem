@@ -22,7 +22,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="10sp"
                 android:layout_weight="1"
-                android:text="College Details"
+                android:text="Add College Details"
                 android:textAlignment="center"
                 android:textColor="@color/colorFG2"
                 android:textSize="28sp"

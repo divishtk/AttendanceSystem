@@ -138,7 +138,7 @@
                 android:id="@+id/textView7"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="DOB"
+                android:text="Date Of Birth"
                 android:textColor="@color/colorFont"
                 android:textSize="14sp" />
             <EditText

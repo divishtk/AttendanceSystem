@@ -52,16 +52,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="SAP ID"
+            android:text="Name"
             android:textColor="@android:color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/student_profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:text="70611019037"
+            android:text="Kavish Shah"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -74,8 +75,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:background="@android:color/darker_gray" />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,16 +93,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Name"
+            android:text="SAP ID"
             android:textColor="@android:color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/student_profile_sapid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
-            android:text="Kavish Shah"
+            android:text="70611019037"
             android:textColor="@android:color/black"
             android:textSize="18dp" />
 
@@ -116,6 +116,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
         android:background="@android:color/darker_gray" />
+
+
 
 
     <LinearLayout
@@ -142,6 +144,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/student_profile_addr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -183,6 +186,7 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/student_profile_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
@@ -199,7 +203,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation_teacher"
+            android:id="@+id/bottom_navigation_student"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -207,6 +211,6 @@
             app:itemIconTint="#FFF"
             app:itemTextColor="@color/colorFontLight"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu_teacher" />
+            app:menu="@menu/bottom_nav_menu_student" />
     </FrameLayout>
 </LinearLayout>
